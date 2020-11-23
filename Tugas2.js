@@ -1,29 +1,33 @@
 function searchName(filter,total,callback) {
-    const data = [
-        'Abigail', 'Alexandra', 'Alison',
-        'Amanda', 'Angela', 'Bela', 'Carol',
-        'Caroline', 'Carolyn', 'Deidre',
-        'Diana', 'Elizabeth', 'Ella',
-        'Faith', 'Olivia', 'Penelope'
-    ]
+    if(typeof filter === 'string' && typeof total === 'number'){
 
-    let dataLength = data.length - 1
-
-    let hasil = []
-
-    let angka = 0;
-
-    let newFilter = new RegExp(filter,"gi")
-
-    for (let i = 0; i <= dataLength; i++) {
-        if (data[i].match(newFilter)) {
-            let temp = data[i]
-            data[i] = hasil[angka]
-            hasil[angka] = temp
-            angka++
+        const data = [
+            'Abigail', 'Alexandra', 'Alison',
+            'Amanda', 'Angela', 'Bela', 'Carol',
+            'Caroline', 'Carolyn', 'Deidre',
+            'Diana', 'Elizabeth', 'Ella',
+            'Faith', 'Olivia', 'Penelope'
+        ]
+    
+        let dataLength = data.length - 1
+    
+        let hasil = []
+    
+        let angka = 0;
+    
+        let newFilter = new RegExp(filter,"gi")
+    
+        for (let i = 0; i <= dataLength; i++) {
+            if (data[i].match(newFilter)) {
+                let temp = data[i]
+                hasil[angka] = temp
+                angka++
+            }
         }
+        callback(hasil,total)
+    }else{
+        console.log('Please input with a valid input')
     }
-    callback(hasil,total)
 }
 
 
@@ -32,7 +36,6 @@ function shortName(hasil, total){
     let semuaData = []
     for(let a = 0; a < total; a++){
         let temp = hasil[a]
-        hasil[a] = semuaData[a]
         semuaData[a] = temp
     }
 
